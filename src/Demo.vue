@@ -20,10 +20,13 @@
       <div class="columns">
         <div class="column is-4 is-offset-4">
           <label class="label">Name</label>
-          <p class="control">
+          <p class="control has-icons-left">
             <!-- Start Typeahead Component -->
-            <typeahead></typeahead>
+            <typeahead :source="source"></typeahead>
             <!-- End Typeahead Component -->
+            <span class="icon is-small is-left">
+              <i class="fa fa-magic"></i>
+            </span>
           </p>
         </div>
       </div>
@@ -41,6 +44,7 @@ export default {
   components: { Typeahead },
   data () {
     return {
+      source: [],
       error: ''
     }
   }

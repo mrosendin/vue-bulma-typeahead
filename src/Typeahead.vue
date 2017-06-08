@@ -1,17 +1,28 @@
 <template>
   <div id="typeahead">
-    <input class="input" type="text" placeholder="Search for users...">
+    <input v-model="query" class="input" type="text" placeholder="Search for users...">
   </div>
 </template>
 
 <script>
 export default {
   name: 'typeahead',
-  props: {},
-  data () {
-    return {}
+  props: {
+    source: {
+      type: Array,
+      default: () => { return [] }
+    }
   },
-  mounted () {},
+  data () {
+    return {
+      query: ''
+    }
+  },
+  watch: {
+    query: (newValue, oldValue) => {
+      console.log(`Old value: ${oldValue}, new value: ${newValue}`)
+    }
+  },
   methods: {}
 }
 </script>
