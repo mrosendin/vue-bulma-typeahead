@@ -1,7 +1,7 @@
 <template>
   <span class="vbta">
     <input :class="['input', 'vbta-hint', { visible: matches.length }]" type="text" :value="hint" readonly>
-    <input v-model="query" class="input vbta-input" type="text" placeholder="Search for users..." @keyup.delete="selected = false">
+    <input v-model="query" class="input vbta-input" type="text" @keyup.delete="selected = false">
     <div :class="['vbta-menu', { visible: matches.length && !selected }]">
       <ul>
         <li v-for="match in matches" class="vbta-suggestion" @click="emitSelect(match)">
