@@ -24,6 +24,7 @@ npm install vue-bulma-typeahead --save
 |onSelect|Function|True|N/A|Suggestion selected event callback. Parameters: value|
 |onChange|Function|True|N/A|Typeahead input value changed event callback. Parameters: value|
 |limit|Number|False|Infinity|Max number of suggestions to show in dropdown.|
+|async|Boolean|True|True|Whether to debounce the suggestions or not.|
 
 **Example**
 

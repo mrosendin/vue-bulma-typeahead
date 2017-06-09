@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "bulma": "^0.4.2",
+    "lodash.debounce": "^4.0.8",
     "node-sass": "^4.5.3",
     "sass-loader": "^5.0.1",
     "vue": "^2.3.3"
