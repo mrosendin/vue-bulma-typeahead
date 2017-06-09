@@ -12,11 +12,6 @@
 
     <div class="container">
 
-      <div class="notification is-danger" v-if="error">
-        <button class="delete" @click="error = ''"></button>
-        {{ error }}
-      </div>
-
       <div class="columns">
         <div class="column is-4 is-offset-4">
           <label class="label">Name</label>
@@ -43,7 +38,6 @@
 
 <script>
 import Typeahead from './Typeahead.vue'
-import axios from 'axios';
 
 export default {
   name: 'demo',
@@ -51,7 +45,6 @@ export default {
   data () {
     return {
       source: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Delaware', 'Kansas', 'North Carolina', 'South Carolina', 'Washington'],
-      error: '',
       value: ''
     }
   },
