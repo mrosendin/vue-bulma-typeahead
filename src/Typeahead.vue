@@ -20,20 +20,30 @@ export default {
   props: {
     source: {
       type: Array,
-      default: () => { return [] }
+      default: () => { return [] },
+      required: true
     },
     onSelect: {
-      type: Function
+      type: Function,
+      required: true
     },
     onChange: {
-      type: Function
+      type: Function,
+      required: true
     },
     limit: {
-      type: Number
+      type: Number,
+      default: 5,
+      required: false
+    },
+    name: {
+      type: String,
+      required: false
     },
     async: {
       type: Boolean,
-      default: true
+      default: true,
+      required: false
     }
   },
   data () {
@@ -51,7 +61,7 @@ export default {
       } else {
         this.getMatches(value)
       }
-      this.onChange(value)
+      this.onChange(value, this.name)
     }
   },
   methods: {
@@ -59,7 +69,7 @@ export default {
       value = value.replace(/<[\/]?strong>/gm, '')
       this.selected = true
       this.query = value
-      this.onSelect(value)
+      this.onSelect(value, this.name)
     },
     getMatches (query) {
       if (query) {
