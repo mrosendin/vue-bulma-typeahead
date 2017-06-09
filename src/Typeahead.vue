@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     emitSelect (value) {
-      value = value.replace(/<[/]?strong>/gm, '')
+      value = value.replace(/<[\/]?span( class="selected")?>/gm, '')
       this.selected = true
       this.query = value
       this.onSelect(value)
@@ -59,7 +59,7 @@ export default {
             isMatch = true
 
             let substr1 = value.substring(0, regexProps.index)
-            let substr2 = `<strong>${value.slice(regexProps.index, regexProps.index + query.length)}</strong>`
+            let substr2 = `<span class="selected">${value.slice(regexProps.index, regexProps.index + query.length)}</span>`
             let substr3 = value.substring(regexProps.index + query.length)
 
             let match = substr1 + substr2 + substr3
@@ -67,7 +67,7 @@ export default {
             matches.push(match)
 
             if (regexProps.index == 0) {
-              let hint = match.replace(/<[/]?strong>/gm, '').substring(query.length)
+              let hint = match.replace(/<[\/]?span( class="selected")?>/gm, '').substring(query.length)
               if (hint !== this.hint) this.hint = query + hint
             } else {
               this.hint = ''
@@ -88,6 +88,10 @@ export default {
 <style lang="scss">
 @import "~bulma/sass/utilities/_all";
 @import "~bulma/sass/elements/form.sass";
+
+.selected {
+  font-weight: bold;
+}
 
 .vbta {
   width: 100%;
