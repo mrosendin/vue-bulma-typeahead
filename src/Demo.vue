@@ -44,7 +44,7 @@ export default {
   components: { Typeahead },
   data () {
     return {
-      source: [],
+      source: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Delaware', 'Kansas', 'North Carolina', 'South Carolina', 'Washington'],
       error: ''
     }
   }

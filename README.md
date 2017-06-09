@@ -1,6 +1,6 @@
 # Vue Bulma Typeahead
 
-> A Vue.js 2 typeahead component for the Bulma CSS framework
+> A simple Vue.js 2 Bulma CSS-styled component with a typeahead dropdown
 
 ## Installation
 
