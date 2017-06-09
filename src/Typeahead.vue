@@ -1,10 +1,10 @@
 <template>
   <span class="vbta">
     <input :class="['input', 'vbta-hint', { visible: matches.length }]" type="text" :value="hint" readonly>
-    <input v-model="query" class="input vbta-input" type="text" placeholder="Search for users...">
-    <div :class="['vbta-menu', { visible: matches.length }]">
+    <input v-model="query" class="input vbta-input" type="text" placeholder="Search for users..." @keyup.delete="selected = false">
+    <div :class="['vbta-menu', { visible: matches.length && !selected }]">
       <ul>
-        <li v-for="match in matches" class="vbta-suggestion">
+        <li v-for="match in matches" class="vbta-suggestion" @click="emitSelect(match)">
           <span v-html="match"></span>
         </li>
       </ul>
@@ -19,13 +19,17 @@ export default {
     source: {
       type: Array,
       default: () => { return [] }
+    },
+    onSelect: {
+      type: Function
     }
   },
   data () {
     return {
       query: '',
       matches: [],
-      hint: ''
+      hint: '',
+      selected: false
     }
   },
   watch: {
@@ -34,6 +38,12 @@ export default {
     }
   },
   methods: {
+    emitSelect (value) {
+      value = value.replace(/<[/]?strong>/gm, '')
+      this.selected = true
+      this.query = value
+      this.onSelect(value)
+    },
     getMatches (query) {
       if (query) {
         let matches = []
