@@ -1,7 +1,7 @@
 {
   "name": "vue-bulma-typeahead",
   "description": "A Vue.js 2 typeahead component for the Bulma CSS framework",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "author": "Matthew Rosendin <matt@roseware.io>",
   "keywords": [
     "vue",
@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "bulma": "^0.4.2",
+    "lodash.debounce": "^4.0.8",
     "node-sass": "^4.5.3",
     "sass-loader": "^5.0.1",
     "vue": "^2.3.3"

@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import debounce from 'lodash.debounce'
+
 export default {
   name: 'typeahead',
   props: {
@@ -28,6 +30,10 @@ export default {
     },
     limit: {
       type: Number
+    },
+    async: {
+      type: Boolean,
+      default: true
     }
   },
   data () {
@@ -40,13 +46,17 @@ export default {
   },
   watch: {
     query: function (value) {
-      this.getMatches(value)
+      if (this.async) {
+        debounce(this.getMatches, 150)(value)
+      } else {
+        this.getMatches(value)
+      }
       this.onChange(value)
     }
   },
   methods: {
     emitSelect (value) {
-      value = value.replace(/<[\/]?span( class="matched-substring")?>/gm, '')
+      value = value.replace(/<[\/]?strong>/gm, '')
       this.selected = true
       this.query = value
       this.onSelect(value)
@@ -57,6 +67,7 @@ export default {
         let regex = new RegExp(query, 'i')
         let isMatch = false
         this.source.forEach(value => {
+          if (typeof value !== 'string') new TypeError(`Typeahead sources must be string. Received ${typeof value}.`)
           if (matches.length === this.limit) return
 
           let regexProps = regex.exec(value)
@@ -64,7 +75,7 @@ export default {
             isMatch = true
 
             let substr1 = value.substring(0, regexProps.index)
-            let substr2 = `<span class="matched-substring">${value.slice(regexProps.index, regexProps.index + query.length)}</span>`
+            let substr2 = `<strong>${value.slice(regexProps.index, regexProps.index + query.length)}</strong>`
             let substr3 = value.substring(regexProps.index + query.length)
 
             let match = substr1 + substr2 + substr3
@@ -72,13 +83,13 @@ export default {
             matches.push(match)
 
             if (regexProps.index == 0) {
-              let hint = match.replace(/<[\/]?span( class="matched-substring")?>/gm, '').substring(query.length)
+              let hint = matches[0].replace(/<[\/]?strong>/gm, '').substring(query.length)
               if (hint !== this.hint) this.hint = query + hint
-            } else {
-              this.hint = ''
             }
           }
-          if (!isMatch) this.hint = ''
+          if (!isMatch) {
+            this.hint = ''
+          }
         })
         this.matches = matches
       } else {
@@ -90,13 +101,9 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "~bulma/sass/utilities/_all";
 @import "~bulma/sass/elements/form.sass";
-
-.matched-substring {
-  font-weight: bold;
-}
 
 .vbta {
   width: 100%;
@@ -151,6 +158,7 @@ export default {
   text-decoration: none;
   outline: 0;
   background-color: #00d1b2;
+  cursor: pointer;
 }
 
 .vbta-hint {
