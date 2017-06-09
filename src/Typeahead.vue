@@ -22,6 +22,9 @@ export default {
     },
     onSelect: {
       type: Function
+    },
+    onChange: {
+      type: Function
     }
   },
   data () {
@@ -35,6 +38,7 @@ export default {
   watch: {
     query: function (value) {
       this.getMatches(value)
+      this.onChange(value)
     }
   },
   methods: {
@@ -48,9 +52,11 @@ export default {
       if (query) {
         let matches = []
         let regex = new RegExp(query, 'i')
+        let isMatch = false
         this.source.forEach(value => {
           let regexProps = regex.exec(value)
           if (regexProps) {
+            isMatch = true
 
             let substr1 = value.substring(0, regexProps.index)
             let substr2 = `<strong>${value.slice(regexProps.index, regexProps.index + query.length)}</strong>`
@@ -67,6 +73,7 @@ export default {
               this.hint = ''
             }
           }
+          if (!isMatch) this.hint = ''
         })
         this.matches = matches
       } else {

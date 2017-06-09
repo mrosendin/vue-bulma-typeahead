@@ -22,12 +22,18 @@
           <label class="label">Name</label>
           <p class="control has-icons-left">
             <!-- Start Typeahead Component -->
-            <typeahead :source="source" :onSelect="onSelect"></typeahead>
+            <typeahead :source="source" :onSelect="onSelect" :onChange="onChange"></typeahead>
             <!-- End Typeahead Component -->
             <span class="icon is-small is-left">
               <i class="fa fa-magic"></i>
             </span>
           </p>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column is-4 is-offset-4">
+          You are searching for '{{ value }}'
         </div>
       </div>
 
@@ -45,12 +51,18 @@ export default {
   data () {
     return {
       source: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Delaware', 'Kansas', 'North Carolina', 'South Carolina', 'Washington'],
-      error: ''
+      error: '',
+      value: ''
     }
   },
   methods: {
     onSelect (value) {
       console.log(`'${value}' was selected.`)
+      this.value = value
+    },
+    onChange (value) {
+      console.log(`Value changed to ${value}.`)
+      this.value = value
     }
   }
 }
