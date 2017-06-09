@@ -57,6 +57,7 @@ export default {
         let regex = new RegExp(query, 'i')
         let isMatch = false
         this.source.forEach(value => {
+          if (typeof value !== 'string') new TypeError(`Typeahead sources must be string. Received ${typeof value}.`)
           if (matches.length === this.limit) return
 
           let regexProps = regex.exec(value)
