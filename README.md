@@ -1,5 +1,7 @@
 # Vue Bulma Typeahead
 
+[![npm version](https://badge.fury.io/js/vue-bulma-typeahead.svg)](https://badge.fury.io/js/vue-bulma-typeahead)
+
 > A simple Vue.js 2 Bulma CSS-styled component with a typeahead dropdown
 
 View the [demo](https://www.roseware.io/vue-bulma-typeahead/).
