@@ -22,7 +22,7 @@
           <label class="label">Name</label>
           <p class="control has-icons-left">
             <!-- Start Typeahead Component -->
-            <typeahead :source="source" :onSelect="onSelect" :onChange="onChange"></typeahead>
+            <typeahead :source="source" :onSelect="onSelect" :onChange="onChange" :limit="5"></typeahead>
             <!-- End Typeahead Component -->
             <span class="icon is-small is-left">
               <i class="fa fa-magic"></i>
