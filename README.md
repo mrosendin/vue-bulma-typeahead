@@ -30,7 +30,7 @@ Use like below. See the [example code](https://github.com/roseware/vue-bulma-typ
 ``` html
 <template>
 
-  <label class="label">Name</label>
+  <label class="label">U.S. State</label>
   <p class="control has-icons-left">
 
     <typeahead :source="source" :onSelect="onSelect" :onChange="onChange" :limit="5"></typeahead>
@@ -50,7 +50,15 @@ export default {
   components: { Typeahead },
   data () {
     return {
-      source: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Delaware', 'Kansas', 'North Carolina', 'South Carolina', 'Washington'],
+      source: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+      'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+      'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+      'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
+      'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico',
+      'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon',
+      'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee',
+      'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
+      'Wisconsin', 'Wyoming'],
       value: ''
     }
   },
