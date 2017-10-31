@@ -26,7 +26,6 @@ npm install vue-bulma-typeahead --save
 |limit|Number|False|5|Max number of suggestions to show in dropdown.|
 |name|String|False|N/A|Name of the typeahead.|
 |async|Boolean|False|True|Whether to debounce the suggestions or not.|
-|placeholder|String|`""`|False|Placeholder value for input field|
 
 **Example**
 
