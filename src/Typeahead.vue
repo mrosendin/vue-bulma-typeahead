@@ -1,6 +1,6 @@
 <template>
   <span class="vbta">
-    <input :class="['input', 'vbta-hint', { visible: matches.length }]" type="text" :value="hint" :placeholder="placeholder", readonly>
+    <input :class="['input', 'vbta-hint', { visible: matches.length }]" type="text" :value="hint" :placeholder="placeholder" readonly>
     <input v-model="query" class="input vbta-input" type="text" @keyup.delete="selected = false">
     <div :class="['vbta-menu', { visible: matches.length && !selected }]">
       <ul>
