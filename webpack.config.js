@@ -14,6 +14,12 @@ module.exports = {
       title: 'Vue Bulma Typeahead',
       filename: './dist/index.html',
       template: './index.html'
+    }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jquery: 'jquery',
+      'window.jQuery': 'jquery',
+      jQuery: 'jquery'
     })
   ],
   module: {

@@ -1,7 +1,7 @@
 <template>
   <span class="vbta">
     <input :class="['input', 'vbta-hint', { visible: matches.length }]" type="text" :value="hint" :placeholder="placeholder" readonly>
-    <input v-model="query" class="input vbta-input" type="text" @keyup.delete="selected = false">
+    <input v-model="query" class="input vbta-input" type="text" @keyup.delete="handleDelete($event)" @keydown.down.prevent="handleKeyDown($event)" @keydown.up.prevent="handleKeyUp" @keyup.enter.prevent.submit="emitSelect(matches[preselected])">
     <div :class="['vbta-menu', { visible: matches.length && !selected }]">
       <ul>
         <li v-for="match in matches" class="vbta-suggestion" @click="emitSelect(match)">
@@ -56,7 +56,9 @@ export default {
       query: '',
       matches: [],
       hint: '',
-      selected: false
+      selected: false,
+      firstTouch: true,
+      preselected: 0
     }
   },
   watch: {
@@ -70,6 +72,37 @@ export default {
     }
   },
   methods: {
+    handleDelete () {
+      this.selected = false
+      this.preselected = 0
+      this.firstTouch = true
+    },
+    handleKeyUp () {
+      if (this.matches && this.preselected != 0) {
+        this.preselected--
+        let el = $('.vbta-suggestion').get(this.preselected)
+        $(el).css('background-color', '#00d1b2')
+
+        let prev = $('.vbta-suggestion').get(this.preselected + 1)
+        $(prev).css('background-color', '#ffffff')
+      }
+    },
+    handleKeyDown () {
+      if (this.matches && this.preselected != this.matches.length - 1) {
+        if (!this.firstTouch) {
+          this.preselected++
+        } else {
+          this.firstTouch = false
+        }
+        let el = $('.vbta-suggestion').get(this.preselected)
+        $(el).css('background-color', '#00d1b2')
+
+        if (this.preselected != 0) {
+          let prev = $('.vbta-suggestion').get(this.preselected - 1)
+          $(prev).css('background-color', '#ffffff')
+        }
+      }
+    },
     emitSelect (value) {
       value = value.replace(/<[\/]?strong>/gm, '')
       this.selected = true
