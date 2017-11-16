@@ -35,20 +35,22 @@ Use like below. See the [example code](https://github.com/roseware/vue-bulma-typ
 ``` html
 <template>
 
-  <label class="label">U.S. State</label>
-  <p class="control has-icons-left">
+  <div class="container">
+    <label class="label">U.S. State</label>
+    <p class="control has-icons-left">
 
-    <typeahead :source="source" :onSelect="onSelect" :onChange="onChange" :limit="5"></typeahead>
+      <typeahead :source="source" :onSelect="onSelect" :onChange="onChange" :limit="5"></typeahead>
 
-    <span class="icon is-small is-left">
-      <i class="fa fa-magic"></i>
-    </span>
-  </p>
+      <span class="icon is-small is-left">
+        <i class="fa fa-magic"></i>
+      </span>
+    </p>
+  </div>
 
 </template>
 
 <script>
-import Typeahead from './Typeahead.vue'
+import Typeahead from 'vue-bulma-typeahead'
 
 export default {
   name: 'demo',
