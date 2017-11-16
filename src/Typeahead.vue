@@ -80,11 +80,11 @@ export default {
     handleKeyUp () {
       if (this.matches && this.preselected != 0) {
         this.preselected--
-        let el = $('.vbta-suggestion').get(this.preselected)
-        $(el).css('background-color', '#00d1b2')
-
-        let prev = $('.vbta-suggestion').get(this.preselected + 1)
-        $(prev).css('background-color', '#ffffff')
+        let el = document.getElementsByClassName("vbta-suggestion")[this.preselected]
+        el.style['background-color'] = '#00d1b2'
+        
+        let prev = document.getElementsByClassName("vbta-suggestion")[this.preselected + 1]
+        prev.style['background-color'] = '#ffffff'
       }
     },
     handleKeyDown () {
@@ -94,13 +94,12 @@ export default {
         } else {
           this.firstTouch = false
         }
-        let el = $('.vbta-suggestion').get(this.preselected)
-        $(el).css('background-color', '#00d1b2')
-
+        let el = document.getElementsByClassName("vbta-suggestion")[this.preselected]
+        el.style['background-color'] = '#00d1b2'
+        
         if (this.preselected != 0) {
-          let prev = $('.vbta-suggestion').get(this.preselected - 1)
-          $(prev).css('background-color', '#ffffff')
-        }
+          let prev = document.getElementsByClassName("vbta-suggestion")[this.preselected - 1]
+          prev.style['background-color'] = '#ffffff'
       }
     },
     emitSelect (value) {
