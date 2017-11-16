@@ -100,6 +100,7 @@ export default {
         if (this.preselected != 0) {
           let prev = document.getElementsByClassName("vbta-suggestion")[this.preselected - 1]
           prev.style['background-color'] = '#ffffff'
+        }
       }
     },
     emitSelect (value) {
