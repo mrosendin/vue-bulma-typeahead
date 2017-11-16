@@ -2,6 +2,8 @@ var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
+process.noDeprecation = true
+
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -12,12 +14,22 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Vue Bulma Typeahead',
-      filename: './dist/index.html',
+      filename: './index.html',
       template: './index.html'
     })
   ],
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['es2015']
+          }
+        }
+      },
       {
         test: /\.(sass|scss)$/,
         use: [
