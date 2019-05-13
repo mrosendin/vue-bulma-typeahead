@@ -4,7 +4,7 @@
 
 > A simple Vue.js 2 Bulma CSS-styled component with a typeahead dropdown
 
-View the [demo](https://rosendin.github.io/vue-bulma-typeahead/).
+View the [demo](https://mattrosendin.github.io/vue-bulma-typeahead/).
 
 ## Installation
 
